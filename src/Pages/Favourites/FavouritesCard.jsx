@@ -1,37 +1,7 @@
-import swal from "sweetalert";
 
-// eslint-disable-next-line react/prop-types
-const PhoneCard = ({ phone }) => {
-  const { phone_name, brand_name, image, price, rating, id } = phone || {};
+const FavouritesCard = ({phone}) => {
+    const { phone_name, brand_name, image, price, rating, id } = phone || {};
   // console.log(phone);
-
-  const handleAddToFavorite = () => {
-    const addedFavoritesArray = [];
-
-    const favorItems = JSON.parse(localStorage.getItem("favorites"));
-    // console.log(favorItems);
-
-    if (!favorItems) {
-      addedFavoritesArray.push(phone);
-      localStorage.setItem("favorites", JSON.stringify(addedFavoritesArray));
-
-      swal("Good job!", "Product added successful", "success");
-
-    } else {
-      const isExist = favorItems.find((phone) => phone.id === id);
-      if (!isExist) {
-        addedFavoritesArray.push(...favorItems, phone);
-        localStorage.setItem("favorites", JSON.stringify(addedFavoritesArray));
-        swal("Good job!", "Product added successful", "success");
-
-      }
-      else{
-        swal("Error!!!", "No duplicate", "error");
-
-      }
-    }
-
-  };
 
   return (
     <div className="flex justify-center items-center h-[80-vh]">
@@ -54,7 +24,6 @@ const PhoneCard = ({ phone }) => {
 
           <a className="inline-block" href="#">
             <button
-              onClick={handleAddToFavorite}
               className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
             >
@@ -82,4 +51,4 @@ const PhoneCard = ({ phone }) => {
   );
 };
 
-export default PhoneCard;
+export default FavouritesCard;
